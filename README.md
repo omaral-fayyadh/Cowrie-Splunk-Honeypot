@@ -77,7 +77,7 @@ This project provided hands-on experience with:
 
 ## 🧾 Documentation
 
-📄 [View Full Project Report (PDF)](docs/Cowrie_Splunk_Honeypot_Report_Omar_Alfayyadh.pdf)
+📄 [View Full Project Report (PDF)](assets/Cowrie-Splunk - Project.pdf)
 
 ---
 
