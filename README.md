@@ -77,7 +77,7 @@ This project provided hands-on experience with:
 
 ## 🧾 Documentation
 
-📄 [View Full Project Report (PDF)](assets/Cowrie-Splunk - Project.pdf)
+📄 [View Full Project Report (PDF)]([assets/Cowrie-Splunk - Project.pdf](https://github.com/omaral-fayyadh/Cowrie-Splunk-Honeypot/commit/0f38a8a26e228182e1dd6302ebb7a1665e901716))
 
 
 ---
