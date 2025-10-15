@@ -31,11 +31,11 @@ It provides actionable insights into brute-force attempts, credential usage, and
 
 | Metric | Description |
 |--------|--------------|
-| 🌍 **Top Attacker IPs** | Ranked by frequency with geolocation |
-| 🔐 **Login Attempts** | Username/password pairs used |
-| ⌨️ **Commands Executed** | Captured attacker commands |
-| 🕓 **Session Duration** | Average time spent per attack |
-| ⚠️ **Attack Frequency** | Time-based distribution of attacks |
+| 🌍 **Total Login Attempts** | Ranked by frequency with geolocation |
+| 🔐 **Attack by IP Address** | Username/password pairs used |
+| ⌨️ **Total Commands Ececuted** | Captured attacker commands |
+| 🕓 **Unique Attacker IPs** | Average time spent per attack |
+| ⚠️ **Failed VS Successful Logins Over Time** | Time-based distribution of attacks |
 
 ---
 
