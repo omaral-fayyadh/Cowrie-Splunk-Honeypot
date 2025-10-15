@@ -1,0 +1,224 @@
+{
+  "title": "Cowrie Honeypot Dashboard",
+  "description": "Dashboard for Cowrie",
+  "inputs": {
+    "input_global_trp": {
+      "options": {
+        "defaultValue": "-24h@h,now",
+        "token": "global_time"
+      },
+      "title": "Global Time Range",
+      "type": "input.timerange"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "earliest": "$global_time.earliest$",
+            "latest": "$global_time.latest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "visualizations": {
+    "viz_BOE0wkZH": {
+      "dataSources": {
+        "primary": "ds_AAnmRqJc"
+      },
+      "description": "This chart shows how many log in attempts were tried",
+      "title": "Total Login Attempts",
+      "type": "splunk.singlevalue",
+      "options": {
+        "backgroundColor": "> majorValue | rangeValue(backgroundColorEditorConfig)",
+        "majorColor": "#ffffff",
+        "trendColor": "#ffffff"
+      },
+      "context": {
+        "backgroundColorEditorConfig": [
+          {
+            "value": "#669922",
+            "to": 20
+          },
+          {
+            "value": "#669922",
+            "from": 20,
+            "to": 40
+          },
+          {
+            "value": "#CBA700",
+            "from": 40,
+            "to": 60
+          },
+          {
+            "value": "#d94e17",
+            "from": 60,
+            "to": 80
+          },
+          {
+            "value": "#d41f1f",
+            "from": 80
+          }
+        ]
+      },
+      "containerOptions": {
+        "title": {
+          "color": "#000000"
+        },
+        "description": {
+          "color": "#000000"
+        }
+      }
+    },
+    "viz_IMfCGafs": {
+      "dataSources": {
+        "primary": "ds_CiMjwNTO"
+      },
+      "title": "Total Commands Executed",
+      "type": "splunk.singlevalue"
+    },
+    "viz_VLvSjKW3": {
+      "dataSources": {
+        "primary": "ds_a1WsjdMu"
+      },
+      "type": "splunk.bar",
+      "title": "Attack by IP Address"
+    },
+    "viz_ysAgkfkP": {
+      "dataSources": {
+        "primary": "ds_ia2xLhVW"
+      },
+      "title": "Unique Attacker IPs",
+      "type": "splunk.singlevalue"
+    },
+    "viz_3QJ2EGxy": {
+      "type": "splunk.line",
+      "dataSources": {
+        "primary": "ds_4mSM730G"
+      },
+      "title": "Failed vs Successful Logins Over Time"
+    }
+  },
+  "dataSources": {
+    "ds_AAnmRqJc": {
+      "name": "Login Attempts",
+      "options": {
+        "query": "index=main sourcetype=cowrie:json (eventid=\"cowrie.login.failed\" OR eventid=\"cowrie.login.success\")\n| stats count AS \"Total Login Attempts\"\n"
+      },
+      "type": "ds.search"
+    },
+    "ds_CiMjwNTO": {
+      "name": "Total Commands Executed",
+      "options": {
+        "query": "index=main sourcetype=cowrie:json eventid=cowrie.command.input\n| stats count AS \"Total Commands Executed\"\n"
+      },
+      "type": "ds.search"
+    },
+    "ds_a1WsjdMu": {
+      "name": "Top Attacker IPs",
+      "options": {
+        "query": "index=main sourcetype=cowrie:json eventid=cowrie.session.connect\n| top limit=10 src_ip\n"
+      },
+      "type": "ds.search"
+    },
+    "ds_ia2xLhVW": {
+      "name": "Unique Attacker IPs",
+      "options": {
+        "query": "index=main sourcetype=cowrie:json eventid=cowrie.session.connect\n| stats dc(src_ip) AS \"Unique Attacker IPs\"\n"
+      },
+      "type": "ds.search"
+    },
+    "ds_4mSM730G": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=main sourcetype=cowrie:json (eventid=\"cowrie.login.failed\" OR eventid=\"cowrie.login.success\") | eval status=if(eventid=\"cowrie.login.failed\",\"Failed\",\"Success\") | timechart count by status"
+      },
+      "name": "Failed vs Successful Logins Over Time"
+    },
+    "ds_bC5PsLaO": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=main sourcetype IN (\"cowrie:docker\",\"cowrie:json\") earliest=-7d\n| eval payload=coalesce(log, message, _raw)\n| rex field=payload \"(?ms){\\\"eventid\\\":(?<eventid>[^\\n]+)}\"\n| rex field=payload \"\\\"src_ip\\\":\\s*\\\"(?<src_ip>[^\\\"]+)\\\"\"\n| iplocation src_ip\n| where isnotnull(lat) AND isnotnull(lon)\n| stats count as hits first(lat) as lat first(lon) as lon values(Country) as Country values(City) as City by src_ip\n| sort - hits\n"
+      },
+      "name": "Search_1"
+    }
+  },
+  "layout": {
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "layoutDefinitions": {
+      "layout_qGlb8S3n": {
+        "structure": [
+          {
+            "item": "viz_BOE0wkZH",
+            "position": {
+              "h": 435,
+              "w": 213,
+              "x": 0,
+              "y": 0
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_3QJ2EGxy",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 435,
+              "w": 1200,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_VLvSjKW3",
+            "position": {
+              "h": 435,
+              "w": 526,
+              "x": 213,
+              "y": 0
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_IMfCGafs",
+            "position": {
+              "h": 435,
+              "w": 250,
+              "x": 739,
+              "y": 0
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_ysAgkfkP",
+            "position": {
+              "h": 435,
+              "w": 211,
+              "x": 989,
+              "y": 0
+            },
+            "type": "block"
+          }
+        ],
+        "type": "grid"
+      }
+    },
+    "options": {},
+    "tabs": {
+      "items": [
+        {
+          "label": "Total Commands Executed",
+          "layoutId": "layout_qGlb8S3n"
+        }
+      ]
+    }
+  }
+}
