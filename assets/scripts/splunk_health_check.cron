@@ -1,0 +1,1 @@
+*/10 * * * * root /opt/splunkforwarder/bin/splunk status || /opt/splunkforwarder/bin/splunk start
