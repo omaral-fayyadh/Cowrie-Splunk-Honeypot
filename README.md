@@ -31,11 +31,11 @@ It provides actionable insights into brute-force attempts, credential usage, and
 
 | Metric | Description |
 |--------|--------------|
-| 🌍 **Total Login Attempts** | Ranked by frequency with geolocation |
-| 🔐 **Attack by IP Address** | Username/password pairs used |
-| ⌨️ **Total Commands Ececuted** | Captured attacker commands |
-| 🕓 **Unique Attacker IPs** | Average time spent per attack |
-| ⚠️ **Failed VS Successful Logins Over Time** | Time-based distribution of attacks |
+| 🌍 **Total Login Attempts** | Counts all successful and failed SSH/Telnet logins captured by Cowrie to measure total attack activity. |
+| 🔐 **Attack by IP Address** | Displays the top attacker IPs by frequency, allowing quick identification of the most active sources. |
+| ⌨️ **Total Commands Ececuted** | Tracks all command inputs from intruders, revealing behavioral patterns and post-login activity. |
+| 🕓 **Unique Attacker IPs** | Shows the number of distinct external IPs that interacted with the honeypot during the analysis window. |
+| ⚠️ **Failed VS Successful Logins Over Time** | Visualizes attack trends, comparing failed and successful authentication attempts chronologically. |
 
 ---
 
