@@ -1,6 +1,6 @@
 # 🧠 Cowrie Honeypot with Splunk SIEM Integration
 
-![Splunk Dashboard](assets/img/splunk_dashboard_preview.png)
+![Splunk Dashboard](assets/img/SPLUNK_DASHBOARD.png)
 
 ---
 
