@@ -79,12 +79,18 @@ This project provided hands-on experience with:
 
 📄 [View Full Project Report (PDF)](assets/Cowrie-Splunk-Project.pdf)
 
+---
+## 🔗 Connection to HydraSec
+The detection gaps observed in this project — high alert volume, limited 
+context, no plain-language explanation — directly contributed to the 
+conception of HydraSec, a multi-head AI threat intelligence platform 
+designed to make every alert explainable.
 
 ---
 
 ## 🧑‍💻 Author
 
 **Omar Al-Fayyadh**  
-Cybersecurity Professional | Cloud Security Enthusiast  
+Cybersecurity Professional | AI Security Founder | tdsllc.info  
 
 🔗 [LinkedIn](https://linkedin.com/in/omaralfayyadh/) | 🎥 [YouTube](https://www.youtube.com/@omaral-fayyadh4307)
